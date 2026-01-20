@@ -32,7 +32,7 @@ sentry_config:
   slack.signing-secret: "redacted"
   slack.legacy-app: false
 
-sentry_url: https://sentry.ab-payments.ru
+sentry_url: https://sentry.example.com
 sentry_superusers:
   - email: admin@example.com
     password: redacted
