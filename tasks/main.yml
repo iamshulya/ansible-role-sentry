@@ -33,6 +33,11 @@
     cmd: ./install.sh --skip-user-creation --no-report-self-hosted-issues
   when: sentry_repo.after != sentry_repo.before
 
+- name: Create config.yml
+  file:
+    path: "{{ sentry_docker_compose_project_folder }}/sentry/config.yml"
+    state: touch
+
 - name: Configure sentry email settings
   loop: "{{ sentry_mail | dict2items }}"
   ansible.builtin.lineinfile:
@@ -63,10 +68,11 @@
   command:
     chdir: "{{ sentry_docker_compose_project_folder }}"
     cmd: >
-      docker-compose run --rm web createuser
+      docker compose run --rm web createuser
         --email "{{ item.email }}"
         --password "{{ item.password }}"
         --superuser
         --no-input
   loop: "{{ sentry_superusers }}"
   ignore_errors: true
+  no_log: true

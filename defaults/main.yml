@@ -3,7 +3,7 @@
 
 sentry_docker_compose_project_folder: /opt/docker/sentry
 sentry_git_repo: https://github.com/getsentry/self-hosted.git
-sentry_version: 21.1.0
+sentry_version: 25.9.0
 sentry_bind: 9000
 
 sentry_env: {}
